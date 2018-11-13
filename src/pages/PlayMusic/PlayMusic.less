@@ -1,0 +1,71 @@
+.player-page {
+  width: 80%;
+  margin: 0 auto;
+  .row-cl {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .caption {
+    width: 100%;
+    text-align: center;
+    height: 25px;
+    line-height: 25px;
+    font-size: 16px;
+    color: rgb(47, 152, 66);
+    cursor: pointer;
+  }
+  .cover {
+    width: 100%;
+    height: auto;
+    img {
+      width: 100%;
+      object-fit: contain;
+      border-radius: 50%;
+      margin: 0 auto;
+    }
+  }
+  .volume-container {
+    position: relative;
+    left: 20px;
+    top: -3px;
+  }
+  .volume-container .volume-wrapper {
+    opacity: 0;
+    transition: opacity .5s linear;
+  }
+  .volume-container:hover .volume-wrapper {
+    opacity: 1;
+  }
+  .music-title {
+    font-size: 25px;
+    font-weight: 400;
+    color: rgb(3, 3, 3);
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+  }
+  .music-artist {
+    font-size: 15px;
+    font-weight: 400;
+    color: rgb(74, 74, 74);
+  }
+  .left-time {
+    font-size: 14px;
+    color: #999;
+    font-weight: 400;
+    width: 100px;
+  }
+  .icon {
+    cursor: pointer;
+  }
+  .volume-wrapper {
+    width: 60px;
+    display: inline-block;
+  }
+}
+.controll-wrapper {
+  margin-top: 10px;
+  width: 100%;
+}
