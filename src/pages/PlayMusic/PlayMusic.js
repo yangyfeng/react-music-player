@@ -11,7 +11,7 @@ class PlayMusic extends React.Component {
         this.state = {
             progress: 0,
             volume: 0,
-            isPlay: true,
+            isPlay: false,
             leftTime: ''
         }
     }
@@ -54,9 +54,15 @@ class PlayMusic extends React.Component {
         });
     }
     next() {
+        this.setState({
+            isPlay:true
+        })
         PubSub.publish('PLAY_NEXT');
     }
     prev() {
+        this.setState({
+            isPlay:true
+        })
         PubSub.publish('PLAY_PREV');
     }
     changeRepeat() {
@@ -65,11 +71,8 @@ class PlayMusic extends React.Component {
     render() {
         return (
             <div className="player-page">
-                <h1 className="caption">
-                    音乐列表->
-                </h1>
-                <div className="row-cl">
-                    <div className="-col-auto cover">
+                <div className="player-content">
+                    <div className="music-cover row -col-auto">
                         <img
                             src={this.props.currentMusitItem.cover}
                             alt={this.props.currentMusitItem.title}/>
@@ -77,15 +80,10 @@ class PlayMusic extends React.Component {
                     <div className="controll-wrapper">
                         <h2 className="music-title">{this.props.currentMusitItem.title}</h2>
                         <h3 className="music-artist">歌手：{this.props.currentMusitItem.artist}</h3>
-                        <div className="row">
+                        <div className="row time-volume">
                             <div className="left-time -col-auto">剩余时间：{this.state.leftTime}</div>
                             <div className="volume-container">
-                                <i
-                                    className="icon-volume rt"
-                                    style={{
-                                    top: 5,
-                                    left: -5
-                                }}></i>
+                                <i className="icon-volume rt"></i>
                                 <div className="volume-wrapper">
                                     <Progress
                                         progress={this.state.volume}
@@ -94,26 +92,22 @@ class PlayMusic extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        <div
-                            style={{
-                            height: 10,
-                            lineHeight: '10px'
-                        }}>
+                        <div className="Progress-content">
                             <Progress
                                 progress={this.state.progress}
                                 onProgressChange={this.changeProgressHandler.bind(this)}></Progress>
                         </div>
-                        <div className="mt20 row">
-                            <div>
+                        <div className="row controll-btns">
+                            <div className="about-play">
                                 <i className="icon prev" onClick={this.prev.bind(this)}></i>
                                 <i
-                                    className={`icon ml20 ${this.state.isPlay
+                                    className={`icon ${this.state.isPlay
                                     ? 'pause'
                                     : 'play'}`}
                                     onClick={this.play.bind(this)}></i>
-                                <i className="icon next ml20" onClick={this.next.bind(this)}></i>
+                                <i className="icon next" onClick={this.next.bind(this)}></i>
                             </div>
-                            <div className="-col-auto">
+                            <div className="play-type">
                                 <i
                                     className={`icon repeat-${this.props.repeatType}`}
                                     onClick={this.changeRepeat.bind(this)}></i>

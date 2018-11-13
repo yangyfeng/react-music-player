@@ -1,11 +1,9 @@
 .player-page {
-  width: 80%;
-  margin: 0 auto;
-  .row-cl {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  background: #dfeaef;
+  height: calc(100% - 51px);
+  padding: 0 20px;
+  .player-content {
+    height: 100%;
   }
   .caption {
     width: 100%;
@@ -16,9 +14,9 @@
     color: rgb(47, 152, 66);
     cursor: pointer;
   }
-  .cover {
+  .music-cover {
     width: 100%;
-    height: auto;
+    height: calc(100% - 216px);
     img {
       width: 100%;
       object-fit: contain;
@@ -26,17 +24,17 @@
       margin: 0 auto;
     }
   }
-  .volume-container {
-    position: relative;
-    left: 20px;
-    top: -3px;
-  }
-  .volume-container .volume-wrapper {
-    opacity: 0;
-    transition: opacity .5s linear;
-  }
-  .volume-container:hover .volume-wrapper {
-    opacity: 1;
+  .time-volume {
+    height: 35px;
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    .volume-container {
+      width: 150px;
+      display: flex !important;
+      align-items: center;
+      justify-content: space-between;
+    }
   }
   .music-title {
     font-size: 25px;
@@ -48,24 +46,44 @@
   }
   .music-artist {
     font-size: 15px;
-    font-weight: 400;
     color: rgb(74, 74, 74);
+    height: 30px;
+    line-height: 30px;
   }
   .left-time {
     font-size: 14px;
     color: #999;
     font-weight: 400;
-    width: 100px;
+    width: 150px;
   }
   .icon {
     cursor: pointer;
   }
   .volume-wrapper {
-    width: 60px;
-    display: inline-block;
+    width: 130px;
+    display: flex;
+    align-items: center;
   }
 }
+
 .controll-wrapper {
-  margin-top: 10px;
-  width: 100%;
+  margin: 20px 0;
+}
+
+.Progress-content {
+  height: 20px;
+  line-height: 20px;
+}
+
+.controll-btns {
+  margin-top: 15px;
+  height: 40px;
+  justify-content: space-between !important;
+  .about-play {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: calc(95% - 32px);
+    height: 100%;
+  }
 }
