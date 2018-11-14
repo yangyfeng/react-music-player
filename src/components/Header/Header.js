@@ -1,11 +1,10 @@
 import React from 'react'
 import './Header.less'
-const img_logo = require('./../../static/images/logo.png')
 class Header extends React.Component {
   render () {
     return (
       <div className="componetns-header row">
-        <img src={img_logo} alt="logo" width="40" className="col-auto" />
+        <i className="col-auto iconfont icon-music logo"></i>
         <h1 className="caption">React Music Player</h1>
       </div>
     )

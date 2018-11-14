@@ -77,11 +77,11 @@ class PlayMusic extends React.Component {
                             src={this.props.currentMusitItem.cover}
                             alt={this.props.currentMusitItem.title}/>
                     </div>
-                    <div className="controll-wrapper">
-                        <h2 className="music-title">{this.props.currentMusitItem.title}</h2>
-                        <h3 className="music-artist">歌手：{this.props.currentMusitItem.artist}</h3>
-                        <div className="row time-volume">
-                            <div className="left-time col-auto">剩余时间：{this.state.leftTime}</div>
+                    <div className="music-controll">
+                        <div className="music-title">{this.props.currentMusitItem.title}</div>
+                        <div className="music-artist">歌手：{this.props.currentMusitItem.artist}</div>
+                        <div className="music-time">剩余时间：{this.state.leftTime}</div>
+                        <div className="music-vol-ptype">
                             <div className="volume-container">
                                 <i className="icon-volume rt"></i>
                                 <div className="volume-wrapper">
@@ -91,13 +91,18 @@ class PlayMusic extends React.Component {
                                         barColor='#aaaaaa'></Progress>
                                 </div>
                             </div>
+                            <div className="play-type">
+                                <i
+                                    className={`icon repeat-${this.props.repeatType}`}
+                                    onClick={this.changeRepeat.bind(this)}></i>
+                            </div>
                         </div>
-                        <div className="Progress-content">
+                        <div className="music-progress">
                             <Progress
                                 progress={this.state.progress}
                                 onProgressChange={this.changeProgressHandler.bind(this)}></Progress>
                         </div>
-                        <div className="row controll-btns">
+                        <div className="music-ctrl">
                             <div className="about-play">
                                 <i className="icon prev" onClick={this.prev.bind(this)}></i>
                                 <i
@@ -106,11 +111,6 @@ class PlayMusic extends React.Component {
                                     : 'play'}`}
                                     onClick={this.play.bind(this)}></i>
                                 <i className="icon next" onClick={this.next.bind(this)}></i>
-                            </div>
-                            <div className="play-type">
-                                <i
-                                    className={`icon repeat-${this.props.repeatType}`}
-                                    onClick={this.changeRepeat.bind(this)}></i>
                             </div>
                         </div>
                     </div>

@@ -1,41 +1,31 @@
+// 播放器容器
 .player-page {
   background: #dfeaef;
-  height: calc(100% - 51px);
-  padding: 0 20px;
-  .player-content {
-    height: 100%;
-  }
-  .caption {
+  height: calc(100% - 40px);
+  padding: 0 1.25rem;
+}
+
+// 播放器可是界面
+.player-content {
+  height: 100%;
+}
+
+// 音乐封面
+.music-cover {
+  width: 100%;
+  height: calc(100% - 400px);
+  img {
     width: 100%;
-    text-align: center;
-    height: 25px;
-    line-height: 25px;
-    font-size: 16px;
-    color: rgb(47, 152, 66);
-    cursor: pointer;
+    object-fit: contain;
+    border-radius: 50%;
+    margin: 0 auto;
   }
-  .music-cover {
-    width: 100%;
-    height: calc(100% - 216px);
-    img {
-      width: 100%;
-      object-fit: contain;
-      border-radius: 50%;
-      margin: 0 auto;
-    }
-  }
-  .time-volume {
-    height: 35px;
-    display: flex !important;
-    align-items: center;
-    justify-content: space-between;
-    .volume-container {
-      width: 150px;
-      display: flex !important;
-      align-items: center;
-      justify-content: space-between;
-    }
-  }
+}
+
+// 播放器控制
+.music-controll {
+  height: 400px;
+  margin: 20px 0;
   .music-title {
     font-size: 25px;
     font-weight: 400;
@@ -50,40 +40,43 @@
     height: 30px;
     line-height: 30px;
   }
-  .left-time {
+  .music-time {
     font-size: 14px;
     color: #999;
     font-weight: 400;
     width: 150px;
   }
-  .icon {
-    cursor: pointer;
-  }
-  .volume-wrapper {
-    width: 130px;
-    display: flex;
-    align-items: center;
-  }
-}
-
-.controll-wrapper {
-  margin: 20px 0;
-}
-
-.Progress-content {
-  height: 20px;
-  line-height: 20px;
-}
-
-.controll-btns {
-  margin-top: 15px;
-  height: 40px;
-  justify-content: space-between !important;
-  .about-play {
-    display: flex;
+  .music-vol-ptype {
+    height: 35px;
+    display: flex !important;
     align-items: center;
     justify-content: space-between;
-    width: calc(95% - 32px);
-    height: 100%;
+    .volume-container {
+      width: 150px;
+      display: flex !important;
+      align-items: center;
+      justify-content: space-between;
+      .volume-wrapper {
+        width: 130px;
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+  .music-progress {
+    height: 20px;
+    line-height: 20px;
+  }
+  .music-ctrl {
+    margin-top: 15px;
+    height: 40px;
+    justify-content: space-between !important;
+    .about-play {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: calc(95% - 32px);
+      height: 100%;
+    }
   }
 }
