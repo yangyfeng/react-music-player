@@ -1,17 +1,26 @@
 import React from 'react'
-// import {HashRouter as Router,Route} from 'react-router-dom'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 import {MUSIC_LIST} from './../static/config.js'
-import {randomRange} from './../static/util.js'
+import Fun from './../static/util.js'
 // 组件
 import PlayMusic from './../pages/PlayMusic/PlayMusic'
-// import MusicList from './../pages/MusicList/MusicList'
+import MusicList from './../pages/MusicList/MusicList'
 import Header from './../components/Header/Header'
 // 发布订阅模式
 let PubSub = require('pubsub-js')
 let $ = window.$
 class Root extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            musicList: MUSIC_LIST,
+            currentMusitItem: {},
+            repeatType: 'cycle'
+        }
+    }
     componentDidMount() {
-        $("#player").jPlayer({supplied: "mp3", wmode: "window", useStateClassSkin: true});
+        let repeatList = ['cycle', 'once', 'random'];
+        $("#player").jPlayer({supplied: "mp3,m4a", wmode: "window", useStateClassSkin: true});
         this.playMusic(this.state.musicList[0]);
         $("#player").bind($.jPlayer.event.ended, (e) => {
             this.playWhenEnd();
@@ -35,7 +44,6 @@ class Root extends React.Component {
         PubSub.subscribe('PLAY_PREV', () => {
             this.playNext('prev');
         });
-        let repeatList = ['cycle', 'once', 'random'];
         PubSub.subscribe('CHANAGE_REPEAT', () => {
             let index = repeatList.indexOf(this.state.repeatType);
             index = (index + 1) % repeatList.length;
@@ -49,20 +57,13 @@ class Root extends React.Component {
         PubSub.unsubscribe('PLAY_NEXT');
         PubSub.unsubscribe('PLAY_PREV');
     }
-    constructor(props) {
-        super(props)
-        this.state = {
-            musicList: MUSIC_LIST,
-            currentMusitItem: {},
-            repeatType: 'cycle'
-        }
-    }
+
     playWhenEnd() {
         if (this.state.repeatType === 'random') {
             let index = this.findMusicIndex(this.state.currentMusitItem);
-            let randomIndex = randomRange(0, this.state.musicList.length - 1);
+            let randomIndex = Fun.randomRange(0, this.state.musicList.length - 1);
             while (randomIndex === index) {
-                randomIndex = randomRange(0, this.state.musicList.length - 1);
+                randomIndex = Fun.randomRange(0, this.state.musicList.length - 1);
             }
             this.playMusic(this.state.musicList[randomIndex]);
         } else if (this.state.repeatType === 'once') {
@@ -91,16 +92,21 @@ class Root extends React.Component {
     }
     playMusic(item) {
         $("#player")
-            .jPlayer("setMedia", {mp3: item.file})
+            .jPlayer("setMedia", {
+            mp3: item.file,
+            autoPlay: false
+        })
             .jPlayer('play');
         this.setState({currentMusitItem: item});
     }
     render() {
+        const Children = React
+            .Children
+            .map(this.props.children, child => React.cloneElement(child, this.state));
         return (
             <div className="container">
                 <div id="player"></div>
-                <Header/> 
-                {React.cloneElement(this.props.children, this.state)}
+                <Header/> {Children}
             </div>
         );
     }
@@ -108,15 +114,13 @@ class Root extends React.Component {
 class App extends React.Component {
     render() {
         return (
-            // <Router>
-            //     <Route component={Root}>
-            //         <Route path="/" component={PlayMusic}/>
-            //         <Route path="/list" component={MusicList}/>
-            //     </Route>
-            // </Router>
-            <Root>
-              <PlayMusic></PlayMusic>
-            </Root>
+            <Router>
+                <Root>
+                    {/* <PlayMusic></PlayMusic> */}
+                    <MusicList></MusicList>
+                    {/* <Route path={'/'} component={PlayMusic}></Route> */}
+                </Root>
+            </Router>
         );
     }
 }

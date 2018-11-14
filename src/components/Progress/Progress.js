@@ -23,12 +23,13 @@ class Progress extends React.Component {
                 ref="progressBar"
                 onClick={this
                 .changeProgress
-                .bind(this)}>
+                .bind(this)} style={{height: Number(this.props.height) + 2 + 'px'}}>
                 <div
                     className="progress"
                     style={{
                     width: `${this.props.progress}%`,
-                    background: this.props.barColor
+                    background: this.props.barColor,
+                    height: this.props.height + 'px'
                 }}></div>
             </div>
         )

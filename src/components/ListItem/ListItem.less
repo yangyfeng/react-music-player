@@ -1,0 +1,41 @@
+.song-item {
+  height: 36px;
+  line-height: 36px;
+  border-bottom: 1px solid #ddd;
+  padding-left: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &:hover {
+    background: #eee;
+  }
+  .text {
+    display: flex;
+    align-items: center;
+    .song-cover {
+      width: 30px;
+      height: 30px;
+      overflow: hidden;
+      margin-right: 20px;
+      img {
+        width: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+    }
+
+  }
+  .delete {
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    font-size: 20px;
+    line-height:30px;
+    text-align: center;
+    color: #f00;
+  }
+  &.focus {
+    color: #2f9842;
+  }
+}

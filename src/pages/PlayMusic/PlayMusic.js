@@ -1,18 +1,21 @@
 import React from 'react'
 // import { Link } from 'react-router-dom'
 import Progress from './../../components/Progress/Progress'
+import Fun from './../../static/util.js'
 import './PlayMusic.less'
 let PubSub = require('pubsub-js')
 let duration = null
+let currentTime = null
 let $ = window.$
 class PlayMusic extends React.Component {
     constructor(props) {
         super(props);
+        console.log(props)
         this.state = {
             progress: 0,
             volume: 0,
             isPlay: false,
-            leftTime: '',
+            currentTime: '',
             typeList : {
                 cycle: 'icon-liebiaoxunhuan',
                 once: 'icon-danquxunhuan',
@@ -23,24 +26,19 @@ class PlayMusic extends React.Component {
     componentDidMount() {
         $("#player").bind($.jPlayer.event.timeupdate, (e) => {
             duration = e.jPlayer.status.duration;
+            currentTime = e.jPlayer.status.currentTime;
             this.setState({
                 progress: e.jPlayer.status.currentPercentAbsolute,
                 volume: e.jPlayer.options.volume * 100,
-                leftTime: this.formatTime(duration * (1 - e.jPlayer.status.currentPercentAbsolute / 100))
+                currentTime: Fun.formatTime(currentTime),
+                duration: Fun.formatTime(duration),
             });
         });
     }
     componentWillUnmount() {
         $("#player").unbind($.jPlayer.event.timeupdate);
     }
-    formatTime(time) {
-        time = Math.floor(time);
-        let miniute = Math.floor(time / 60);
-        let seconds = Math.floor(time % 60);
-        return miniute + ':' + (seconds < 10
-            ? '0' + seconds
-            : seconds);
-    }
+    
     changeProgressHandler(progress) {
         $("#player").jPlayer("play", duration * progress);
         this.setState({isPlay: true});
@@ -85,7 +83,7 @@ class PlayMusic extends React.Component {
                     <div className="music-controll">
                         <div className="music-title">{this.props.currentMusitItem.title}</div>
                         <div className="music-artist"><i className="iconfont icon-renqigeshou"></i> {this.props.currentMusitItem.artist}</div>
-                        <div className="music-time"><i className="iconfont icon-shijian"></i> -{this.state.leftTime}</div>
+                        <div className="music-time"><i className="iconfont icon-shijian"></i> {this.state.currentTime}/{this.state.duration}</div>
                         <div className="music-vol-ptype">
                             <div className="volume-container">
                                 <i className="iconfont icon-icon-test"></i>
@@ -93,13 +91,14 @@ class PlayMusic extends React.Component {
                                     <Progress
                                         progress={this.state.volume}
                                         onProgressChange={this.changeVolumeHandler.bind(this)}
-                                        barColor='#aaaaaa'></Progress>
+                                        barColor='#636de6' height='5'></Progress>
                                 </div>
                             </div>
                             <div className="play-type">
                                 <i
                                     className={`iconfont repeatType ${this.state.typeList[this.props.repeatType]}`}
                                     onClick={this.changeRepeat.bind(this)}></i>
+                                <i className={`iconfont icon-bofangqi_shouyegequliebiao_ music-list`}></i>
                             </div>
                         </div>
                         <div className="music-progress">
