@@ -72,7 +72,7 @@ class PlayMusic extends React.Component {
         return (
             <div className="player-page">
                 <div className="player-content">
-                    <div className="music-cover row -col-auto">
+                    <div className="music-cover row col-auto">
                         <img
                             src={this.props.currentMusitItem.cover}
                             alt={this.props.currentMusitItem.title}/>
@@ -81,7 +81,7 @@ class PlayMusic extends React.Component {
                         <h2 className="music-title">{this.props.currentMusitItem.title}</h2>
                         <h3 className="music-artist">歌手：{this.props.currentMusitItem.artist}</h3>
                         <div className="row time-volume">
-                            <div className="left-time -col-auto">剩余时间：{this.state.leftTime}</div>
+                            <div className="left-time col-auto">剩余时间：{this.state.leftTime}</div>
                             <div className="volume-container">
                                 <i className="icon-volume rt"></i>
                                 <div className="volume-wrapper">

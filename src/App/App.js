@@ -1,7 +1,7 @@
 import React from 'react'
 // import {HashRouter as Router,Route} from 'react-router-dom'
-import {MUSIC_LIST} from './../static/config/config.js'
-import {randomRange} from './../static/utils/util.js'
+import {MUSIC_LIST} from './../static/config.js'
+import {randomRange} from './../static/util.js'
 // 组件
 import PlayMusic from './../pages/PlayMusic/PlayMusic'
 // import MusicList from './../pages/MusicList/MusicList'
