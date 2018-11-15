@@ -5,6 +5,13 @@
   height: 100%;
 }
 
+/* 播放器容器 */
+.player-page {
+  background: #dfeaef;
+  height: calc(100% - 40px);
+  position: relative;
+}
+
 /* 栅格系统，行排列 */
 .row {
   display: flex;

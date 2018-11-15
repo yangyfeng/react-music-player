@@ -1,5 +1,4 @@
 import React from 'react'
-import {BrowserRouter as Router, Route} from 'react-router-dom'
 import {MUSIC_LIST} from './../static/config.js'
 import Fun from './../static/util.js'
 // 组件
@@ -9,13 +8,15 @@ import Header from './../components/Header/Header'
 // 发布订阅模式
 let PubSub = require('pubsub-js')
 let $ = window.$
-class Root extends React.Component {
+class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             musicList: MUSIC_LIST,
             currentMusitItem: {},
-            repeatType: 'cycle'
+            repeatType: 'cycle',
+            showPlayer: false,
+            showPlayerHander:this.showPlayerHander.bind(this)
         }
     }
     componentDidMount() {
@@ -99,29 +100,21 @@ class Root extends React.Component {
             .jPlayer('play');
         this.setState({currentMusitItem: item});
     }
+    showPlayerHander(flag) {
+        this.setState({showPlayer: flag})
+    }
     render() {
-        const Children = React
-            .Children
-            .map(this.props.children, child => React.cloneElement(child, this.state));
         return (
             <div className="container">
                 <div id="player"></div>
-                <Header/> {Children}
+                <Header/>
+                <div className="player-page">
+                    <PlayMusic {...this.state} showPlayerHander={this.state.showPlayerHander}></PlayMusic>
+                    <MusicList {...this.state} showPlayerHander={this.state.showPlayerHander}></MusicList>
+                </div>
             </div>
         );
     }
 }
-class App extends React.Component {
-    render() {
-        return (
-            <Router>
-                <Root>
-                    {/* <PlayMusic></PlayMusic> */}
-                    <MusicList></MusicList>
-                    {/* <Route path={'/'} component={PlayMusic}></Route> */}
-                </Root>
-            </Router>
-        );
-    }
-}
+
 export default App

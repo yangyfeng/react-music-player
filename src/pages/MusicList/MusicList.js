@@ -1,6 +1,6 @@
 import React from 'react'
 import ListItem from './../../components/ListItem/ListItem'
-import {Link} from 'react-router-dom'
+import './MusicList.less'
 class MusicList extends React.Component {
     constructor(props) {
         super(props)
@@ -19,8 +19,20 @@ class MusicList extends React.Component {
                 );
             });
         return (
-            <div className="list-wrap">
-                <Link className="back-palyer" to={'/'}>返回</Link>
+            <div
+                className={`list-wrap ${this.props.showPlayer
+                ? 'hide'
+                : ''}`}>
+                <div className="list-title">
+                    <div
+                        className="iconfont icon-fanhui1 back-palyer"
+                        onClick={this
+                        .props
+                        .showPlayerHander
+                        .bind(this, true)}></div>
+                    <div className="text">歌曲列表</div>
+                </div>
+
                 <ul className="music-song-list">
                     {Items}
                 </ul>

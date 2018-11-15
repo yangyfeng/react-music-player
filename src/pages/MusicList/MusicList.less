@@ -1,12 +1,30 @@
 .list-wrap {
+  position: absolute;
+  left: 0;
+  top: 0;
   width: 100%;
   height: auto;
-  .back-palyer {
-    display: block;
-    width: 50px;
-    height: 20px;
-    line-height: 20px;
+  .list-title {
+    height: 30px;
+    line-height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 16px;
-    color: #000000;
+    border-bottom: 1px solid #dddddd;
+    position: relative;
+    .back-palyer {
+      position: absolute;
+      left: 10px;
+      color: #1479e8;
+      cursor: pointer;
+      font-size: 20px;
+      background: #bfc1c5;
+      width: 30px;
+      height: 25px;
+      text-align: center;
+      line-height: 25px;
+      border-radius: 5px;
+    }
   }
 }
