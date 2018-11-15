@@ -4,6 +4,7 @@ import App from './App/App'
 import * as serviceWorker from './serviceWorker'
 import './static/css/reset.css'
 import './static/css/common.css'
+import  './static/css/iconfont.css'
 ReactDOM.render(<App />, document.getElementById('root'))
 
 // If you want your app to work offline and load faster, you can change
