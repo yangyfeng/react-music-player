@@ -1,4 +1,5 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 注意：播放器中的歌曲是抓取的QQ Music中的静态数据，可能会存在无发播放的情况哦！
 
 ## Available Scripts
 
