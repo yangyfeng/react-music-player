@@ -15,7 +15,7 @@ class App extends React.Component {
             musicList: MUSIC_LIST,
             currentMusitItem: {},
             repeatType: 'cycle',
-            showPlayer: false,
+            showPlayer: true,
             showPlayerHander:this.showPlayerHander.bind(this)
         }
     }
